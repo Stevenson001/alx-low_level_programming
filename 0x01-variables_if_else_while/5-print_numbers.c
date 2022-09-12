@@ -1,4 +1,4 @@
-#include<stdio.>
+#include<stdio.h>
 
 /**
  * main - entry point of program
@@ -14,3 +14,4 @@ int main(void)
 	for (i = 0; i < 10; i++)
 		printf("\n");
 	return (0);
+}
