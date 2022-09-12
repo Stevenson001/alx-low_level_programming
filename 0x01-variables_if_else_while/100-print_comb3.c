@@ -20,7 +20,7 @@ int main(void)
 		for (d2 = d1 + 1; d2 <= 57; d2++)
 		{
 			putchar(d1);
-			putchar(d1);
+			putchar(d2);
 			if (d1 == 56 && d2 == 57)
 				continue;
 			putchar(44);
