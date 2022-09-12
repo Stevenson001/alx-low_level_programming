@@ -5,7 +5,7 @@
  * no arguments
  *
  * Description: print all alphabet in lower case except q and e
- * Return (0)
+ * Return: 0 on success
  */
 int main(void)
 {
