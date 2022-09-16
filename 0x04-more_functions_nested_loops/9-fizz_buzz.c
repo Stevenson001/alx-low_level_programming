@@ -5,10 +5,10 @@
  * Takes no argument.
  *
  * Description: Prints the numbers from 1 to 100, followed by a newline.
- *  But for multiples of 3, print "Fizz" in place of the number,
- *  and for multiples of 5 print "Buzz",
- *  and for multiples of both 3 and 5, print "FizzBuzz".
- *  Return: 0 if successful.
+ * But for multiples of 3, print "Fizz" in place of the number,
+ * and for multiples of 5 print "Buzz",
+ * and for multiples of both 3 and 5, print "FizzBuzz".
+ * Return: 0 if successful.
  */
 int main(void)
 {
