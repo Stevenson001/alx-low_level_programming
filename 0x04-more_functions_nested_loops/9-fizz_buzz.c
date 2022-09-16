@@ -27,8 +27,8 @@ int main(void)
 		else if (x % 3 == 0 && x % 5 == 0)
 			printf("FizzBuzz ");
 		else
-			printf("%d ", x)
-			x++;
+			printf("%d ", x);
+		x++;
 	}
 	putchar(10);
 	return (0);
