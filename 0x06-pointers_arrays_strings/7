@@ -1,0 +1,40 @@
+mj05
+/
+alx-low_level_programming
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+alx-low_level_programming/0x06-pointers_arrays_strings/7-leet.c
+@Fasmj05
+Fasmj05 7
+ 1 contributor
+24 lines (22 sloc)  331 Bytes
+#include "main.h"
+
+/**
+ * leet - encodes a string into 1337
+ * @s: string to encode
+ *
+ * Return: address of s
+ */
+char *leet(char *s)
+{
+	int i, j;
+	char a[] = "aAeEoOtTlL";
+	char b[] = "4433007711";
+
+	for (i = 0; *(s + i); i++)
+	{
+		for (j = 0; j <= 9; j++)
+		{
+			if (a[j] == *(s + i))
+				*(s + i) = b[j];
+		}
+	}
+	return (s);
+}
