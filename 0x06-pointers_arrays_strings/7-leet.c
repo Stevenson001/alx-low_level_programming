@@ -1,19 +1,3 @@
-mj05
-/
-alx-low_level_programming
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-alx-low_level_programming/0x06-pointers_arrays_strings/7-leet.c
-@Fasmj05
-Fasmj05 7
- 1 contributor
-24 lines (22 sloc)  331 Bytes
 #include "main.h"
 
 /**
