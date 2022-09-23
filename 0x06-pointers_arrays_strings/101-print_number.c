@@ -1,4 +1,5 @@
-nclude "main.h"
+#include "main.h"
+#include<stdio.h>
 /**
  * print_number - prints number
  * @n:integer to convert to character
@@ -14,11 +15,11 @@ void print_number(int n)
 
 	if (n == 0)
 	{
-		_putchar('0');
+		putchar('0');
 	}
 	if (n < 0)
 	{
-		_putchar('-');
+		putchar('-');
 		n += 1;
 		n *= -1;
 		n++;
@@ -36,7 +37,7 @@ void print_number(int n)
 
 	for (i = 0; i < c; i++)
 	{
-		_putchar((abs / mult) + '0');
+		putchar((abs / mult) + '0');
 		abs = abs % mult;
 		mult /= 10;
 	}
