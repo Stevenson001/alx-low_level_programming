@@ -1,129 +1,76 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
- * strtow - Splits a string into words.
- * @str: Pointer to string to be split.
+ * wrdcnt - counts the number of words in a string
+ * @s: string to count
  *
- * Return: Returns pointer to an array of strings,
- * if failed to allocate memory, returns NULL.
+ * Return: int of number of words
+ */
+int wrdcnt(char *s)
+{
+	int i, n = 0;
+
+	for (i = 0; s[i]; i++)
+	{
+		if (s[i] == ' ')
+		{
+			if (s[i + 1] != ' ' && s[i + 1] != '\0')
+				n++;
+		}
+		else if (i == 0)
+			n++;
+	}
+	n++;
+	return (n);
+}
+
+/**
+ * strtow - splits a string into words
+ * @str: string to split
+ *
+ * Return: pointer to an array of strings
  */
 char **strtow(char *str)
 {
-	int x, height, ptr[1000];
-	char **mptr;
+	int i, j, k, l, n = 0, wc = 0;
+	char **w;
 
-	height = word_count(str);
-	word_len(str, ptr);
-
-	if (str == NULL || *str == 0 || height == 0)
+	if (str == NULL || *str == '\0')
 		return (NULL);
-
-	mptr = (char **)malloc(sizeof(char *) * height + 1);
-
-	if (mptr == NULL)
+	n = wrdcnt(str);
+	if (n == 1)
 		return (NULL);
-
-	for (x = 0; x < height; x++)
+	w = (char **)malloc(n * sizeof(char *));
+	if (w == NULL)
+		return (NULL);
+	w[n - 1] = NULL;
+	i = 0;
+	while (str[i])
 	{
-		*(mptr + x) = (char *)malloc(sizeof(char) * (ptr[x] + 1));
-		if (*(mptr + x) == NULL)
-			return (NULL);
-	}
-
-	return (str_to_w(str, height, mptr));
-}
-
-/**
- * str_to_w - Seperates all the words in a string into new strings.
- * @str: Pointer to original string.
- * @height: Number of words to be made into strings.
- * @mptr: Pointer to pointers to address of each new string.
- *
- * Return: Pointer to pointers to new strings.
- */
-char **str_to_w(char *str, int height, char **mptr)
-{
-	int x, y, w, j = 0;
-
-	for (x = 0, w = NO_WORD; x < height; x++, w = NO_WORD)
-	{
-		for (y = 0; 1; j++)
+		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
 		{
-			if ((*(str + j) == ' ' || *(str + j) == '\0') && w)
+			for (j = 1; str[i + j] != ' ' && str[i + j]; j++)
+				;
+			j++;
+			w[wc] = (char *)malloc(j * sizeof(char));
+			j--;
+			if (w[wc] == NULL)
 			{
-				*(*(mptr + x) + y) = '\0';
-				j++;
-				break;
+				for (k = 0; k < wc; k++)
+					free(w[k]);
+				free(w[n - 1]);
+				free(w);
+				return (NULL);
 			}
-
-			if (*(str + j) == ' ' && !w)
-				continue;
-
-			if (*(str + j) != ' ')
-			{
-				*(*(mptr + x) + y) = *(str + j);
-				y++;
-				w = WORD;
-			}
+			for (l = 0; l < j; l++)
+				w[wc][l] = str[i + l];
+			w[wc][l] = '\0';
+			wc++;
+			i += j;
 		}
+		else
+			i++;
 	}
-	*(*(mptr + (x - 1)) + y) = '\0';
-	*(mptr + height) = NULL;
-
-	return (mptr);
-}
-
-/**
- * word_len - Gets the length of a each word in a string.
- * @str: Pointer to string for which words should be counted.
- * @ptr: Pointer to array of words' lengths.
- *
- * Return: No return value.
- */
-void word_len(char *str, int *ptr)
-{
-	int i, w, j = 0;
-
-	for (i = 0; str[i]; i++)
-		;
-
-	for (i = 0; str[i]; i++)
-	{
-		if (str[i] != ' ')
-		{
-			for (w = 0; 1; i++, w++)
-			{
-				if (str[i] == ' ' || str[i] == '\0')
-				{
-					ptr[j++] = w;
-					break;
-				}
-			}
-		}
-	}
-}
-
-/**
- * word_count - Counts the number of words in a string.
- * @str: Pointer to string.
- *
- * Return: Returns the number of words in the string.
- */
-int word_count(char *str)
-{
-	int i, word = NO_WORD, count = 0;
-
-	for (i = 0; (*(str + i)); i++)
-	{
-		if (*(str + i) == ' ')
-		{
-			word = NO_WORD;
-		}
-		else if (!word)
-		{
-			word = WORD;
-			count++;
-		}
-	}
-	return (count);
+	return (w);
 }
